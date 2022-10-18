@@ -1,0 +1,162 @@
+### Shell command: More on ls
+
+Is
+The ls command is used to list the contents of a directory. It is probably the most commonly used Linux command. It can be used in a number of different ways. Here are some examples:
+
+Command	Result
+ls:	 List the files in the working directory
+
+ls /bin:	List the files in the /bin directory (or any other directory we care to specify)
+
+ls -l:	List the files in the working directory in long format
+
+ls -l /etc /bin:	List the files in the /bin directory and the /etc directory in long format
+
+ls -la :	List all files (even ones with names beginning with a period character, which are
+normally hidden) in the parent of the working directory in long format
+
+
+-------------
+
+### Manipulation: cp
+cp file1 file2:	Copies the contents of file1 into file2. If file2 does not exist, it is created; otherwise, file2 is silently overwritten with the contents of file1.
+
+cp -i file1 file2:	Like above however, since the "-i" (interactive) option is specified, if file2 exists, the user is prompted before it is overwritten with the contents of file1.
+
+cp file1 dir1:	Copy the contents of file1 (into a file named file1) inside of directory dir1
+.
+cp -R dir1 dir2:	Copy the contents of the directory dir1. If directory dir2 does not exist, it is created. Otherwise, it creates a directory named dir1 within directory dir2.
+-----------------------------
+### Manipulation: rm
+rm file1 file2:	Delete file1 and file2.
+
+rm -i file1 file2:	Like above however, since the "-i" (interactive) option is specified, the user is prompted before each file is deleted.
+
+rm -r dir1 dir2:  Directories dir1 and dir2 are deleted along with all of their contents.
+
+----------------------------
+### Manipulation: Wildcards
+*:	Matches any characters
+
+?:	Matches any single character
+
+[characters]:	Matches any character that is a member of the set characters. The set of characters may also be expressed as a POSIX character class such as one of the following:
+POSIX Character Classes
+[:alnum:]	Alphanumeric characters
+[:alpha:]	Alphabetic characters
+[:digit:]	Numerals
+[:upper:]	Uppercase alphabetic characters
+[:lower:]	Lowercase alphabetic characters
+
+[!characters]:	Matches any character that is not a member of the set characters
+
+
+
+### ChangingPermissions
+
+777: (rwxrwxrwx) No restrictions on permissions. Anybody may do anything. Generally not a desirable setting.
+
+755: (rwxr-xr-x) The file's owner may read, write, and execute the file. All others may read and execute the file. This setting is common for programs that are used by all users.
+
+700: (rwx------) The file's owner may read, write, and execute the file. Nobody else has any rights. This setting is useful for programs that only the owner may use and must be kept private from others.
+
+666: (rw-rw-rw-) All users may read and write the file.
+
+644: (rw-r--r--) The owner may read and write a file, while all others may only read the file. A common setting for data files that everybody may read, but only the owner may change.
+
+600: (rw-------) The owner may read and write a file. All others have no rights. A common setting for data files that the owner wants to keep private.
+
+
+-------------
+
+### Text Editors
+
+vi, vim:	The granddaddy of Unix text editors, vi, is infamous for its obtuse user interface. On the bright side, vi is powerful, lightweight, and fast. Learning vi is a Unix rite of passage, since it is universally available on Unix-like systems. On most Linux distributions, an enhanced version of vi called vim is provided in place of vi. vim is a remarkable editor and well worth taking the time to learn it.
+
+Emacs:	The true giant in the world of text editors is Emacs originally written by Richard Stallman. Emacs contains (or can be made to contain) every feature ever conceived of for a text editor. It should be noted that vi and Emacs fans fight bitter religious wars over which is better.
+
+nano:	nano is a free clone of the text editor supplied with the pine email program. nano is very easy to use but is very short on features compared to vim and emacs. nano is recommended for first-time users who need a command line editor.
+
+gedit:	gedit is the editor supplied with the GNOME desktop environment. gedit is easy to use and contains enough features to be a good beginners-level editor.
+
+kwrite:	kwrite is the "advanced editor" supplied with KDE. It has syntax highlighting, a helpful feature for programmers and script writers.	
+
+-----------------------------
+### ChangingPermissions
+Changethepermissionofafile“word.txt”thatonlytheowner(you)canreadandwrite,  butalltheothers(includingothersinthegroup)canonlyreadit.Noexecutionisneeded  forallusers
+
+----------------------------
+### Superuser
+•Asuperuserhasallsystemadministationauthority.  
+•Somecommandsneedsuperuser’sprivilleges.  
+•Put“sudo”beforethecommandifyouareasuperuser.
+
+
+
+
+### VersionControlandCollaboration
+
+•It’sessentialtouseaversioncontrolsystemforsoftwaredevelopment  andotherdocumentationworks.  
+
+•Basicsolution:Makingcopies 
+프로젝트_최종.txt 
+프로젝트_최종_수정1.txt 
+프로젝트_최종_수정1_진짜최종.txt 
+프로젝트_최종_수정1_진짜최종_추가수정2.txt  
+....
+프로젝트_오영민_최종.txt  
+프로젝트_오영민_최종_홍길동_수정.txt  
+프로젝트_오영민_최종_홍길동_수정_오영민_검토.txt 
+… 
+•Weneedasystematicmanagementsystemforversioncontrolandcollaboration.
+
+--------------------------------------------
+
+### Installing Git
+
+•Linux/Mac/Windows(checkpre-installedversion) 
+
+•Linux(installonaDebian-baseddistribution) 
+
+•Windows–Run“GitBash”
+•https://git-scm.com/download/win 
+
+•Mac
+•https://git-scm.com/download/ma
+
+
+-------------
+
+### Gitconfig : First-time setup
+
+•Gitconfigurationsarestoredinthreelevels:  
+
+(1)Systemlevel:--systemoption.Affectsallusesandrepositoriesonthesystem(administrative)  
+file:/etc/gitconfig 
+
+(2)Global(user)level:--globaloption.Affectsallrepositoriesofacurrentuser  
+file:~/.config/git/config  
+
+(3)Locallevel:--localoption.Specifictothecurrentrepository  
+file:.git/gitconfig 
+
+*Eachleveloverridesvaluesinthepreviouslevel:system->global->loca
+
+-----------------------------
+### Lgnoring a file
+#ignore all .a files
+*.a
+
+#but do track lib.a, even though you're ignoring .a files above
+!lib.a
+
+#only ignore the TODO file in the current directory, not subdir/TODO
+/TODO
+
+#ignore doc/notes.txt, but not doc/server/arch.txt
+doc/*.txt
+
+#ignore all .pdf files in the doc/ directory and of its subdirectories
+doc/** /*.pdf
+
+----------------------------
